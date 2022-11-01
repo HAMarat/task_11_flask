@@ -1,4 +1,4 @@
-import json
+from json import load
 
 
 def load_candidates_from_json(path: str) -> list[dict]:
@@ -6,7 +6,7 @@ def load_candidates_from_json(path: str) -> list[dict]:
     Загружаем данные кандидатов из файла
     """
     with open(path, 'r', encoding='utf-8') as file:
-        candidates_data = json.load(file)
+        candidates_data = load(file)
         return candidates_data
 
 
@@ -21,7 +21,7 @@ def get_candidate(candidates: list[dict], candidate_id: str) -> dict | None:
 
 def get_candidates_by_name(candidates: list[dict], candidate_name: str) -> list[dict] | None:
     """
-    Возвращаем данные кандидата по полученному имени
+    Возвращаем данные кандидатов по полученному имени
     """
     list_candidates_by_name = []
     for candidate in candidates:
