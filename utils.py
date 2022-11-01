@@ -10,22 +10,24 @@ def load_candidates_from_json(path: str) -> list[dict]:
         return candidates_data
 
 
-def get_candidate(candidates: list[dict], candidate_id: int) -> dict | None:
+def get_candidate(candidates: list[dict], candidate_id: str) -> dict | None:
     """
     Возвращаем данные кандидата по полученному id
     """
     for candidate in candidates:
-        if candidate_id == candidate['id']:
+        if int(candidate_id) == candidate['id']:
             return candidate
 
 
-def get_candidates_by_name(candidates: list[dict], candidate_name: str) -> dict | None:
+def get_candidates_by_name(candidates: list[dict], candidate_name: str) -> list[dict] | None:
     """
     Возвращаем данные кандидата по полученному имени
     """
+    list_candidates_by_name = []
     for candidate in candidates:
-        if candidate_name.lower() == candidate['name'].lower():
-            return candidate
+        if candidate_name.lower() in candidate['name'].lower():
+            list_candidates_by_name.append(candidate)
+    return list_candidates_by_name
 
 
 def get_candidates_by_skill(candidates: list[dict], skill_name: str) -> list[dict] | None:
